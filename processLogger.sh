@@ -2,22 +2,26 @@ Help()
 {
     echo "the help"
 }
-#TODO : test script
 #  processLogger -p ananas -d 2
 
 # Option parsing
-while getopts "hy:m:d:H:M:S:p:l:" OPTION; do
+while getopts "hly:m:d:H:M:S:p:f:" OPTION; do
     case $OPTION in
 	h) # display the help
 	    Help
 	    exit;;
-	p)
-	    process_name=$OPTARG;;
 	l)
-	    log_file_name=$OPTARG;;
+	    log_process=1
+	;;
+	p)
+	    process_name=$OPTARG
+	;;
+	f)
+	    log_file_name=$OPTARG
+	;;
 	y)
 	    year=$OPTARG
-    	    ;;
+    	;;
         m)
     	    month=$OPTARG
     	;;
@@ -39,7 +43,26 @@ while getopts "hy:m:d:H:M:S:p:l:" OPTION; do
     esac
 done
 
-#default value of 1 day elaspe time
+# DONE check that a process name has been given
+if [ -z $process_name ]
+then
+    echo "no process name given"
+    exit 1
+fi
+
+
+log_process=${log_process:-0}
+log_file_name=${log_file_name:-"testProcessLog.log"}
+
+# Add the process to the log file with date of now and exist
+if [ "$log_process" == 1 ]
+then
+    echo "Adding process -" $process_name "- "
+    echo $process_name', '$(date +"%Y-%m-%d %H:%M:%S") >> $log_file_name
+    exit 0
+fi
+
+#default value of 1 day elapse time
 year=${year:-0}
 month=${month:-0}
 day=${day:-1}
@@ -52,7 +75,7 @@ most_recent_date_accepted_epoch=$(date -d "-$year year -$month month -$day day -
 # parse the last process timelapse condition
 #  by default : 1 day
 # log_file_name=${log_file_name:"testProcessLog.log"}
-log_file_name="testProcessLog.log"
+
 
 # echo "process name : " $process_name
 # echo "log file name : " ${log_file_name}
@@ -62,6 +85,7 @@ latest_process_exec=$(grep $process_name, $log_file_name | \
 			  cut --delimiter="," --field=2 | \
 			  sort --numeric-sort --reverse | \
 			  head --lines=1)
+
 # test if any process have been found in the log file
 latest_process_exec=${latest_process_exec:-"no_process_found"}
 
@@ -74,20 +98,22 @@ else
 #     echo "most recent date accepted  : " $(date -d @$most_recent_date_accepted_epoch +"%Y_%m_%d %H:%M:%S")
 #     echo "most recent date accepted in epoch : " $most_recent_date_accepted_epoch
 
-    latest_process_exec_epoch=$(date -d "$latest_process_exec" +"%s")
+    latest_process_exec_epoch=$(date -d "$latest_process_exec" +%s)
 
     if $(test $most_recent_date_accepted_epoch -gt $latest_process_exec_epoch)
     then
-	echo "process has not been executed yet"
+	# not executed yet
+	echo "False"
 	# TODO add process to log file with the date of now
-    else echo "process already executed"
+    else echo "True"
     fi
 fi
 
 
-# TODO change above condition to true or false return TODO add record
-#  if process has to be executed (might be better has an other function
+# DONE change above condition to true or false return
+# DONE add record if process has to be executed (might be better has an other function
 #  or option
+
 # TODO option to delete the X nb of record, in up or down
 #  order
 
