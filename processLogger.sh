@@ -3,6 +3,7 @@ Help()
     echo "the help"
 }
 #  processLogger -p ananas -d 2
+# TODO complete help function
 
 # Option parsing
 while getopts "hly:m:d:H:M:S:p:f:" OPTION; do
@@ -35,7 +36,7 @@ while getopts "hly:m:d:H:M:S:p:f:" OPTION; do
     	    minute=$OPTARG
     	;;
         S)
-    	    second==$OPTARG
+    	    second=$OPTARG
     	;;
 	*)
 	    echo "unknown options :" $1
@@ -43,7 +44,6 @@ while getopts "hly:m:d:H:M:S:p:f:" OPTION; do
     esac
 done
 
-# DONE check that a process name has been given
 if [ -z $process_name ]
 then
     echo "no process name given"
@@ -62,25 +62,17 @@ then
     exit 0
 fi
 
-#default value of 1 day elapse time
+#default value of 0
 year=${year:-0}
 month=${month:-0}
-day=${day:-1}
+day=${day:-0}
 hour=${hour:-0}
 minute=${minute:-0}
 second=${second:-0}
 
 most_recent_date_accepted_epoch=$(date -d "-$year year -$month month -$day day -$hour hour -$minute minute -$second second" +%s)
 
-# parse the last process timelapse condition
-#  by default : 1 day
-# log_file_name=${log_file_name:"testProcessLog.log"}
-
-
-# echo "process name : " $process_name
-# echo "log file name : " ${log_file_name}
-####### DONE check if process is present in the log #######
-#  currently it somehow find that the process has already been executed if not present in the og file
+# Find last execution of the process
 latest_process_exec=$(grep $process_name, $log_file_name | \
 			  cut --delimiter="," --field=2 | \
 			  sort --numeric-sort --reverse | \
@@ -93,26 +85,16 @@ if [ "$latest_process_exec" = "no_process_found" ]
 then
     echo "No process of name - " ${process_name} " - have been found in log file - " $log_file_name " - "
 else
-#     echo "most recent process exec : " $latest_process_exec
-#     echo "most recent process exec in epoch : " $(date -d "$latest_process_exec" +"%s")
-#     echo "most recent date accepted  : " $(date -d @$most_recent_date_accepted_epoch +"%Y_%m_%d %H:%M:%S")
-#     echo "most recent date accepted in epoch : " $most_recent_date_accepted_epoch
-
     latest_process_exec_epoch=$(date -d "$latest_process_exec" +%s)
 
     if $(test $most_recent_date_accepted_epoch -gt $latest_process_exec_epoch)
     then
-	# not executed yet
+	# process not executed yet
 	echo "False"
-	# TODO add process to log file with the date of now
     else echo "True"
     fi
 fi
 
-
-# DONE change above condition to true or false return
-# DONE add record if process has to be executed (might be better has an other function
-#  or option
 
 # TODO option to delete the X nb of record, in up or down
 #  order
