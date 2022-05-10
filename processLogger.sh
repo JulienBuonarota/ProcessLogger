@@ -77,18 +77,18 @@ done
 
 if [ -z $process_name ]
 then
-    echo "no process name given"
+    echo "no process name given but one should be given."
     exit 1
 fi
 
 
 log_process=${log_process:-0}
-log_file_name=${log_file_name:-"testProcessLog.log"}
+log_file_name=${log_file_name:-"ProcessLogger.log"}
 
 # Add the process to the log file with date of now and exist
 if [ "$log_process" == 1 ]
 then
-    echo "Adding process -" $process_name "- "
+    echo "Adding process -" $process_name "- to file -" $log_file_name "-"
     echo $process_name', '$(date +"%Y-%m-%d %H:%M:%S") >> $log_file_name
     exit 0
 fi
