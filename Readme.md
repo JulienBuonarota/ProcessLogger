@@ -24,7 +24,8 @@ Options:
      Its default value is ProcessLogger.log
 
 Example of use ($ line of code, // commentary:
-'''
+
+''' shell
 // Has process Ananas been executed in the last 2 days 
 $ processLogger -p Ananas -d 2
 $ --> False
