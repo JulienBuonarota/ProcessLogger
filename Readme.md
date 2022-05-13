@@ -2,6 +2,7 @@ ProcessLogger allow to keep a log of process, keeping track of their execution.
  It allow to ask the question:
    \" As this process been executed in the last minute/hour/day...\"
 
+
 Options:
  Elapse time management:
    By default all values are 0.
@@ -25,7 +26,7 @@ Options:
 
 Example of use ($ line of code, // commentary:
 
-''' shell
+'''shell
 // Has process Ananas been executed in the last 2 days 
 $ processLogger -p Ananas -d 2
 $ --> False
