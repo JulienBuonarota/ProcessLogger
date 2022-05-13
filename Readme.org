@@ -26,11 +26,11 @@ Other options:
 
 Example of use ($ line of code, // commentary):
 
-```shell
+#+BEGIN_SRC shell
 // Has process Ananas been executed in the last 2 days 
 $ processLogger -p Ananas -d 2
 $ False
 // the process can then be executed
 // If it had been executed succesfully it should be logged
 $ processLogger -l -p Ananas
-```
+#+END_SRC
