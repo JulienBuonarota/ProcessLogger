@@ -1,7 +1,8 @@
 ProcessLogger allow to keep a log of process, keeping track of their execution.
- It allow to ask the question:
-   <q>As this process been executed in the last minute/hour/day...</q>
-
+ It allows to ask the question:
+ <blockquote>
+  As this process been executed in the last minute/hour/day...
+</blockquote>
 
 ## Options
 ### Elapse time management
