@@ -46,7 +46,6 @@ $ processLogger -l -p Ananas
 import subprocess
 import os
 
-# TODO resolve problem of log file being save outside the exec path
 def ananas_process():
     print("process to be executed")
 
@@ -73,7 +72,8 @@ if output_bool is False:
     # the process has not been executed yet
     ananas_process()
     # record the execution of the process
-    output = subprocess.run("./processLogger.sh -l -f example_log.log -p ananas", shell=True, capture_output=True)
+    output = subprocess.run("./processLogger.sh -l -f example_log.log -p ananas", 
+	                        shell=True, capture_output=True)
 else:
     print("No execution of process ananas needed")
 ```
