@@ -1,6 +1,6 @@
 ProcessLogger allow to keep a log of process, keeping track of their execution.
  It allow to ask the question:
-   <q>As this process been executed in the last minute/hour/day...\</q>
+   <q>As this process been executed in the last minute/hour/day...</q>
 
 
 ## Options
@@ -60,7 +60,7 @@ if 'process' in output_string:
     # example of possible output_string:
     # No process of name -  ananas  - have been found in log file -  example_log.log  -
     print(output_string)
-    # can consider that if the process has not been log yet if should be executed
+    # can consider that if the process has not been log yet it should be executed
     output_bool = False
 elif ('True' in output_string) or ('False' in output_string):
     output_bool = eval(output_string)
