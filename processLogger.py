@@ -1,3 +1,7 @@
+import subprocess
+import os
+
+##
 def ask(process_name, log_file_name, year=0, month=0, day=0, hour=0, minute=0, second=0):
     output = subprocess.run("./processLogger.sh -f {} -p {} -y {} -m {} -d {} -H {} -M {} -S {}"
                             .format(log_file_path, process_name,
@@ -16,6 +20,13 @@ def ask(process_name, log_file_name, year=0, month=0, day=0, hour=0, minute=0, s
 
     return output_bool
 
+
 def log(process_name, log_file_name):
-    subprocess.run("./processLogger.sh -l -f {} -p {}".format(log_file_name, process_name),
-                   shell=True, capture_output=True)
+    print("./processLogger.sh -l -f {} -p {}".format(log_file_name, process_name))
+    output = subprocess.run("./processLogger.sh -l -f {} -p {}".format(log_file_name, process_name), shell=True, capture_output=True)
+
+
+if __name__ == "__main__":
+    print("logging ananas")
+    log("ananas", "florent.log")
+

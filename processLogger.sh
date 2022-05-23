@@ -85,8 +85,15 @@ fi
 log_process=${log_process:-0}
 log_file_name=${log_file_name:-"ProcessLogger.log"}
 
+# test if log fil exist
+if [ ! -f $log_file_name ]
+then
+    echo " creation of log file -" $log_file_name "-"
+    touch $log_file_name
+fi
+
 # Add the process to the log file with date of now and exist
-if [ "$log_process" == 1 ]
+if [ $log_process -eq 1 ]
 then
     echo "Adding process -" $process_name "- to file -" $log_file_name "-"
     echo $process_name', '$(date +"%Y-%m-%d %H:%M:%S") >> $log_file_name
