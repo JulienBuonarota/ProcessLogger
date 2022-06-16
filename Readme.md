@@ -1,7 +1,7 @@
-ProcessLogger allow to keep a log of process, keeping track of their execution.
+ProcessLogger allows to keep a log of process, keeping track of their execution.
  It allows to ask the question:
  <blockquote>
-  As this process been executed in the last minute/hour/day...
+  Has this process been executed in the last minute/hour/day...
 </blockquote>
 
 ## Options
@@ -18,15 +18,15 @@ By default all values are set to 0
 
 ### Other options
 <ul> 
-  <li> <b>l</b> : if given, the process will be haded to log with name and
-  current date and time. By default the process is not loged to let
+  <li> <b>l</b> : if given, the process will be added to log with name and
+  current date and time. By default the process is not logged to let
   the program using ProcessLogger the oportunity to verify if the
   process completed his execution. </li>
   
   <li> <b>p</b> : name of the process  </li>
 
   <li> <b>f</b> : name of the log file either a path or a file name. In the
-  late case the file will be saved in the current folder. Its default
+  later case the file will be saved in the current folder. Its default
   value is ProcessLogger.log </li>
 </ul>
 

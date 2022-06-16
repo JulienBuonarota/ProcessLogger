@@ -85,14 +85,14 @@ fi
 log_process=${log_process:-0}
 log_file_name=${log_file_name:-"ProcessLogger.log"}
 
-# test if log fil exist
+# test if log fil exit
 if [ ! -f $log_file_name ]
 then
     echo " creation of log file -" $log_file_name "-"
     touch $log_file_name
 fi
 
-# Add the process to the log file with date of now and exist
+# Add the process to the log file with date of now and exit
 if [ $log_process -eq 1 ]
 then
     echo "Adding process -" $process_name "- to file -" $log_file_name "-"
@@ -134,10 +134,4 @@ else
 fi
 
 
-# TODO option to delete the X nb of record, in up or down
-#  order
 
-# TODO display if process have ever been recorded in this .log
-# IMPLEMENTATION if $(grep -c process_name a_file) = 0
-# if not executed, insert an execution log
-# return true :
