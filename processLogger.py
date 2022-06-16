@@ -16,7 +16,8 @@ def ask(process_name, log_file_name, year=0, month=0, day=0, hour=0, minute=0, s
     year, month, day, hour, minute, second: int
     return: bool
         True: the process has been executed more recently than the elapse time
-        False: the process has not been executed
+        False: the process has not been executed more recently than the elapse time
+        None: Unexpected output of ProcessLogger
     """
     output = subprocess.run("processLogger.sh -f {} -p {} -y {} -m {} -d {} -H {} -M {} -S {}"
                             .format(log_file_name, process_name,
