@@ -21,7 +21,7 @@ By default all values are set to 0
   <li> <b>l</b> : if given, the process will be added to log with name and
   current date and time. By default the process is not logged to let
   the program using ProcessLogger the oportunity to verify if the
-  process completed his execution. </li>
+  process completed its execution. </li>
   
   <li> <b>p</b> : name of the process  </li>
 
@@ -106,7 +106,7 @@ def ask(process_name, log_file_name, year=0, month=0, day=0, hour=0, minute=0, s
     ## Parsing of the different possible outputs
     output_string = output.stdout.decode().strip()
     if 'process' in output_string:
-        # can consider that if the process has not been log yet if should be executed
+        # can consider that if the process has never been logged before it should be executed
         output_bool = False
     elif ('True' in output_string) or ('False' in output_string):
         output_bool = eval(output_string)
